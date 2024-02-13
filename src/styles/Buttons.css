@@ -1,0 +1,19 @@
+.button {
+  border-radius: 8px;
+  background-color: #D0A34F;
+  color: #F0F0F0;
+  border: none;
+  font-family: "Dosis", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.button:active {
+  background-color: #cb983b;
+}
+.button.classic {
+  height: 40px;
+  width: 100%;
+}
+
+/*# sourceMappingURL=Buttons.css.map */

@@ -1,0 +1,26 @@
+$secondary: #029FB3;
+
+.app-input {
+  .texts-container {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  input {
+    height: 40px;
+    width: 280px;
+    border-radius: 8px;
+    border: 2px solid white;
+    padding: 0 10px;
+
+    &:focus {
+      outline: none;
+      border: 2px solid $secondary;
+    }
+  }
+}

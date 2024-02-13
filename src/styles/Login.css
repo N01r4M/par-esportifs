@@ -1,0 +1,63 @@
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.login-container .form-group {
+  display: flex;
+  flex-direction: column;
+}
+.login-container .form-group .row {
+  display: flex;
+}
+.login-container .form-group .row .input-container.left {
+  margin-right: 5px;
+}
+.login-container .form-group .row .input-container.right {
+  margin-left: 5px;
+}
+.login-container .form-group .row.password {
+  margin: 25px 0 30px 0;
+}
+.login-container .input-container {
+  display: flex;
+  flex-direction: column;
+}
+.login-container .input-container.password-container {
+  margin: 25px 0 30px 0;
+}
+.login-container .input-container.forgotten-container {
+  margin-bottom: 30px;
+}
+.login-container .input-container .input {
+  height: 40px;
+  width: 280px;
+  border-radius: 8px;
+  border: 2px solid white;
+  padding: 0 10px;
+}
+.login-container .input-container .input:focus {
+  outline: none;
+  border: 2px solid #029FB3;
+}
+.login-container .input-container .texts-container {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.login-container .input-container .texts-container p {
+  margin: 0;
+}
+.login-container .input-container .error {
+  color: #ff8383;
+}
+.login-container .signup {
+  display: flex;
+  justify-content: center;
+  margin-top: 35px;
+}
+.login-container .signup p {
+  margin: 0 3px 0 0;
+}
+
+/*# sourceMappingURL=Login.css.map */

@@ -1,0 +1,21 @@
+.app-input .texts-container {
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.app-input .texts-container p {
+  margin: 0;
+}
+.app-input input {
+  height: 40px;
+  width: 280px;
+  border-radius: 8px;
+  border: 2px solid white;
+  padding: 0 10px;
+}
+.app-input input:focus {
+  outline: none;
+  border: 2px solid #029FB3;
+}
+
+/*# sourceMappingURL=Inputs.css.map */

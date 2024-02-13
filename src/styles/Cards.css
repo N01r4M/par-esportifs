@@ -1,0 +1,11 @@
+.card {
+  background-color: #59636E;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 15px 20px;
+}
+.card .login-form-input {
+  margin-top: 26px;
+}
+
+/*# sourceMappingURL=Cards.css.map */

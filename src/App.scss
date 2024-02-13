@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis:wght@400;600');
+
+$background: #343A40;
+$cardBackground: #59636E;
+$white: #F0F0F0;
+
+$primary: #D0A34F;
+$secondary: #029FB3;
+
+html, body {
+  background-color: $background;
+  font-family: 'Dosis', sans-serif;
+  font-weight: 400;
+  color: $white;
+  font-size: 18px;
+  height: 100% !important;
+  width: 100% !important;
+  margin: 0;
+}
+
+h1 {
+  font-size: 60px;
+  font-weight: 600;
+}
+
+a {
+  color: $primary;
+}

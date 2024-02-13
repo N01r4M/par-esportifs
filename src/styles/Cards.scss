@@ -1,0 +1,12 @@
+$cardBackground: #59636E;
+
+.card {
+  background-color: $cardBackground;
+  border-radius: 10px;
+  width: fit-content;
+  padding: 15px 20px;
+
+  .login-form-input {
+    margin-top: 26px;
+  }
+}
