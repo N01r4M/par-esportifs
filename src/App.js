@@ -7,18 +7,13 @@ import {ForgottenPwd} from "./pages/users/ForgottenPwd";
 import paresportifsApi from "./paresportifsApi";
 
 function App() {
-    const parseJWT = token => {
-        if (!token) { return; }
-        const base64Url = token.split('.')[1];
-        const base64 = base64Url.replace('-', '+').replace('_', '/');
-        return JSON.parse(window.atob(base64)).sub;
-    }
-    const idUser = parseJWT(localStorage.getItem('token'));
-    const login = sessionStorage.getItem('token') !== null;
+    const token = sessionStorage.getItem('token');
+    const uuid = sessionStorage.getItem('uuid');
+    const login = token !== null;
     const [coins, setCoins] = useState();
 
     useEffect(() => {
-        login && paresportifsApi.get(`users/${idUser}`)
+        login && paresportifsApi.get(`users/${uuid}`)
             .then(res => {
                 setCoins(res.data.coins)
             })
@@ -28,8 +23,8 @@ function App() {
     return (
         <>
             <Routes>
-                <Route path="/login" element={<Login idUser={idUser} login={login} coins={coins} />} />
-                <Route path="/signin" element={<Signup idUser={idUser} login={login} coins={coins} />} />
+                <Route path="/login" element={<Login uuid={uuid} login={login} coins={coins} />} />
+                <Route path="/signin" element={<Signup uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/forgotten-password" element={<ForgottenPwd />} />
             </Routes>
         </>

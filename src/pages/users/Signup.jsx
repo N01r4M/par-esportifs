@@ -8,6 +8,8 @@ import {AppButton} from "../../components/Buttons";
 import {Navigate} from "react-router-dom";
 import paresportifsApi from "../../paresportifsApi";
 import paresportifsAuth from "../../paresportifsAuth";
+import {jwtDecode} from "jwt-decode";
+import {useState} from "react";
 
 const SignupSchema = Yup.object().shape({
     email: Yup.string().email("L'adresse mail est invalide").required('Champs obligatoire'),
@@ -18,7 +20,7 @@ const SignupSchema = Yup.object().shape({
 
 export function Signup(props) {
     if (props.login) {
-        return <Navigate to={"/"} state={{ coins: props.coins, idUser: props.idUser }} replace={true} />
+        return <Navigate to={"/"} state={{ coins: props.coins, uuid: props.uuid }} replace={true} />
     }
 
     return (
@@ -62,7 +64,10 @@ export function Signup(props) {
 
                                                 if (status === '200') {
                                                     const token = JSON.stringify(res.data.token);
+                                                    const decodedToken = jwtDecode(token);
+                                                    const uuid = decodedToken.uuid;
 
+                                                    sessionStorage.setItem('uuid', uuid)
                                                     sessionStorage.setItem('token', token);
                                                     window.location.reload();
                                                 } else {
