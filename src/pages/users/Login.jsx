@@ -23,8 +23,6 @@ export function Login(props) {
 
     return (
         <>
-            <AppNavbarLogo />
-
             <div className="login-container">
                 <AppTitle title="Connexion" style={{marginBottom: 0}} />
                 <AppText text="Connectez-vous à la communauté des e-parieurs" style={{marginBottom: "50px"}} />

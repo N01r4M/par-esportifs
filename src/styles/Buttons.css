@@ -7,9 +7,18 @@
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
+  height: 40px;
 }
 .button:active {
   background-color: #cb983b;
+}
+.button.link {
+  text-decoration: none;
+  width: 110px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .button.classic {
   height: 40px;

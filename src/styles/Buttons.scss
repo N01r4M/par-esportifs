@@ -10,9 +10,19 @@ $primary: #D0A34F;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
+  height: 40px;
 
   &:active {
     background-color: darken($primary, 5%);
+  }
+
+  &.link {
+    text-decoration: none;
+    width: 110px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &.classic {

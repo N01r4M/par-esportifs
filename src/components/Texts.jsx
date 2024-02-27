@@ -14,7 +14,7 @@ export function AppText(props) {
 
 export function AppLink(props) {
     return (
-        <Link to={props.link}>{props.text}</Link>
+        <Link to={props.link} className={props.class}>{props.text}</Link>
     )
 }
 

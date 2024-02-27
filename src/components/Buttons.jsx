@@ -1,4 +1,5 @@
 import "../styles/Buttons.css";
+import {Link} from "react-router-dom";
 
 export function AppButton(props) {
     return (
@@ -6,8 +7,8 @@ export function AppButton(props) {
     )
 }
 
-export function AppButtonLink() {
+export function AppButtonLink(props) {
     return (
-        <></>
+        <Link to={props.link} className="button link"><p>{props.text}</p></Link>
     )
 }

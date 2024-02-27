@@ -1,8 +1,46 @@
+$white: #F0F0F0;
+$primary: #D0A34F;
+
 .navbar {
   height: 60px !important;
   display: flex;
-  justify-content: center;
   align-items: center;
+
+  &.navbar-logo {
+    justify-content: center;
+  }
+
+  &.navbar-links {
+    justify-content: space-between;
+    margin: 0 15px;
+
+    .links {
+      .link {
+        margin: 0 10px;
+        color: $white;
+        text-decoration: none;
+
+        &.active {
+          color: $primary;
+        }
+      }
+    }
+
+    .logout {
+      display: flex;
+      align-items: center;
+
+      .coins {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+
+        p {
+          margin-right: 2px;
+        }
+      }
+    }
+  }
 
   img {
     height: 30px;

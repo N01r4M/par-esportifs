@@ -9,7 +9,6 @@ import {Navigate} from "react-router-dom";
 import paresportifsApi from "../../paresportifsApi";
 import paresportifsAuth from "../../paresportifsAuth";
 import {jwtDecode} from "jwt-decode";
-import {useState} from "react";
 
 const SignupSchema = Yup.object().shape({
     email: Yup.string().email("L'adresse mail est invalide").required('Champs obligatoire'),
@@ -25,8 +24,6 @@ export function Signup(props) {
 
     return (
         <>
-            <AppNavbarLogo />
-
             <div className="login-container">
                 <AppTitle title="Inscription" style={{marginBottom: 0}}/>
                 <AppText text="Rejoignez la communauté des e-parieurs" style={{marginBottom: "50px"}}/>
