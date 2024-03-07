@@ -2,7 +2,6 @@ import {AppTitle, AppText, AppLink} from "../../components/Texts";
 import {AppCard} from "../../components/Cards";
 import {AppButton} from "../../components/Buttons";
 import "../../styles/Login.css";
-import {AppNavbarLogo} from "../../components/Navbar";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {Navigate} from "react-router-dom";

@@ -1,5 +1,4 @@
 import * as Yup from "yup";
-import {AppNavbarLogo} from "../../components/Navbar";
 import {AppLink, AppText, AppTitle} from "../../components/Texts";
 import {AppCard} from "../../components/Cards";
 import {ErrorMessage, Field, Form, Formik} from "formik";
@@ -50,8 +49,8 @@ export function Signup(props) {
                                 .then(res => {
                                     const status = JSON.stringify(res.status);
                                     const dataAuth = {
-                                        'email': values.email,
-                                        'password': values.password
+                                        "email": values.email,
+                                        "password": values.password
                                     };
 
                                     if (status === '201') {

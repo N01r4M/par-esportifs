@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/Coins.scss"
 
 export default class Coins extends React.Component {
     constructor(props) {

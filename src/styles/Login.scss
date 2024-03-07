@@ -1,4 +1,5 @@
 $secondary: #029FB3;
+$error: #ff8383;
 
 .login-container {
   display: flex;
@@ -42,7 +43,7 @@ $secondary: #029FB3;
       height: 40px;
       width: 280px;
       border-radius: 8px;
-      border: 2px solid white;
+      border: 2px solid #FFFFFF;
       padding: 0 10px;
 
       &:focus {
@@ -62,7 +63,7 @@ $secondary: #029FB3;
     }
 
     .error {
-      color: #ff8383;
+      color: $error;
     }
   }
 

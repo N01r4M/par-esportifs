@@ -7,6 +7,7 @@ import {ForgottenPwd} from "./pages/users/ForgottenPwd";
 import paresportifsApi from "./paresportifsApi";
 import {AppNavbar, AppNavbarLogo} from "./components/Navbar";
 import Logout from "./pages/users/Logout";
+import {Profile} from "./pages/users/Profile";
 
 function App() {
     const token = sessionStorage.getItem('token');
@@ -32,6 +33,7 @@ function App() {
             }
 
             <Routes>
+                <Route path="/profile" element={<Profile uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/login" element={<Login uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/signin" element={<Signup uuid={uuid} login={login} coins={coins} />} />

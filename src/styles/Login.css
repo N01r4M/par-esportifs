@@ -33,7 +33,7 @@
   height: 40px;
   width: 280px;
   border-radius: 8px;
-  border: 2px solid white;
+  border: 2px solid #FFFFFF;
   padding: 0 10px;
 }
 .login-container .input-container .input:focus {

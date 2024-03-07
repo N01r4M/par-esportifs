@@ -18,5 +18,8 @@ export function AppLink(props) {
     )
 }
 
-
-
+export function AppBreadcrumb(props) {
+    return (
+        <ul className={props.class}></ul>
+    )
+}
