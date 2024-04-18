@@ -11,16 +11,16 @@ export function AppCard({children}) {
 }
 
 export function AppCardLeague(props) {
-    const league = props.league;
     const navigate = useNavigate();
+    console.log(props)
 
     return (
-        <div className="card leagues" onClick={() => navigate(`/league/${league.slug}`)}>
+        <div className="card leagues" onClick={() => navigate(`/league/${props.slug}`)}>
             <div className="title-container">
-                <h5 className="title">{league.name}</h5>
+                <h5 className="title">{props.name}</h5>
                 <FavHeartEmpty />
             </div>
-            <img alt="Logo ligue" src={league.image_url} />
+            <img alt="Logo ligue" src={props.image_url} />
         </div>
     )
 }

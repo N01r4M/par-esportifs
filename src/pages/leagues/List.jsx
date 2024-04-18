@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import pandaScoreApi from "../../pandaScoreApi";
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import {AppBreadcrumb} from "../../components/Texts";
 import {AppCardLeague} from "../../components/Cards";
 import {Loading} from "../Loading";
@@ -10,7 +10,7 @@ import {Pagination} from "../../components/Pagination";
 export function List() {
     const [leagues, setLeagues] = useState([]);
     const [loading, setLoading] = useState(true);
-    const pathname = window.location.pathname;
+    const pathname = useLocation().pathname;
     const page = useParams().page;
     const previousPage = page === '1' ? 1 : parseInt(page) - 1;
     const nextPage = parseInt(page) + 1;
@@ -28,21 +28,27 @@ export function List() {
             });
     }
 
-   useEffect(() => {
-        getLeagues();
-        setLoading(false)
+    const getFav = () => {}
+
+    useEffect(() => {
+       pathname.startsWith('/leagues/') ? getLeagues() : getFav();
+       setLoading(false)
     }, [page]);
 
     if (!loading) {
-        console.log(leagues)
         return (
             <>
-                <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues", link: "/leagues/1" }]} />
+                {
+                    pathname.startsWith('/leagues/') ?
+                        <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues", link: "/leagues/1" }]} />
+                    :
+                        <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues favorites", link: "/favorites/1" }]} />
+                }
 
                 <div className="leagues-list-container">
                     {
                         leagues.map((league) => (
-                            <AppCardLeague league={league} />
+                            <AppCardLeague slug={league.slug} name={league.name} image_url={league.image_url} />
                         ))
                     }
                 </div>

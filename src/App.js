@@ -31,7 +31,7 @@ function App() {
 
             <Routes>
                 <Route path="/leagues/:page" element={<List uuid={uuid} login={login} coins={coins} />} />
-                <Route path="/favorite/:page" element={<List uuid={uuid} login={login} coins={coins} />} />
+                <Route path="/favorites/:page" element={<List uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/league/:slug" element={<League uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/profile" element={<Profile uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/login" element={<Login uuid={uuid} login={login} coins={coins} />} />
