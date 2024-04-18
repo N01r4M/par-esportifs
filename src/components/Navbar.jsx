@@ -1,6 +1,6 @@
 import "../styles/Navbars.css"
 import {AppLink} from "./Texts";
-import Coins from "./Coins";
+import {Coins} from "./Coins";
 import {AppButtonLink} from "./Buttons";
 import {useLocation} from "react-router-dom";
 
@@ -20,8 +20,8 @@ export function AppNavbar(props) {
             <img src={require("../assets/logo_navbar.png")} alt="logo" />
 
             <div className="links">
-                <AppLink text="Ligues" link={"/leagues"} class={`link ${location.pathname === "/leagues" ? "active" : ""}`} />
-                <AppLink text="Favoris" link={"/favorites"} class={`link ${location.pathname === "/favorites" ? "active" : ""}`} />
+                <AppLink text="Ligues" link={"/leagues/1"} class={`link ${location.pathname.startsWith("/leagues") ? "active" : ""}`} />
+                <AppLink text="Favoris" link={"/favorites/1"} class={`link ${location.pathname === "/favorites" ? "active" : ""}`} />
                 <AppLink text="Paris" link={"/bets"} class={`link ${location.pathname === "/bets" || location.pathname === "/" ? "active" : ""}`} />
                 <AppLink text="Classement" link={"/ranking"} class={`link ${location.pathname === "/ranking" ? "active" : ""}`} />
                 <AppLink text="Profil" link={"/profile"} class={`link ${location.pathname === "/profile" ? "active" : ""}`} />

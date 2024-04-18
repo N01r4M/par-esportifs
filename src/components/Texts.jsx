@@ -1,4 +1,5 @@
 import {Link} from "react-router-dom";
+import "../styles/Texts.scss";
 
 export function AppTitle(props) {
     return (
@@ -20,6 +21,17 @@ export function AppLink(props) {
 
 export function AppBreadcrumb(props) {
     return (
-        <ul className={props.class}></ul>
+        <nav aria-label="Breadcrumb" className="breadcrumb">
+            <ul className="breadcrumb">
+                {
+                    // eslint-disable-next-line array-callback-return
+                    props.links.map(function (value, index) {
+                        return <li className="breadcrumb-item" key={index}>
+                            <AppLink link={value.link} text={value.text}/>
+                        </li>
+                    })
+                }
+            </ul>
+        </nav>
     )
 }

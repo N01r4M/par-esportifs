@@ -8,6 +8,8 @@ import paresportifsApi from "./paresportifsApi";
 import {AppNavbar, AppNavbarLogo} from "./components/Navbar";
 import Logout from "./pages/users/Logout";
 import {Profile} from "./pages/users/Profile";
+import {List} from "./pages/leagues/List";
+import {League} from "./pages/leagues/League";
 
 function App() {
     const token = sessionStorage.getItem('token');
@@ -25,14 +27,12 @@ function App() {
 
     return (
         <>
-            {
-                login ?
-                    <AppNavbar coins={coins} />
-                    :
-                    <AppNavbarLogo />
-            }
+            <AppNavbar coins={100} />
 
             <Routes>
+                <Route path="/leagues/:page" element={<List uuid={uuid} login={login} coins={coins} />} />
+                <Route path="/favorite/:page" element={<List uuid={uuid} login={login} coins={coins} />} />
+                <Route path="/league/:slug" element={<League uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/profile" element={<Profile uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/login" element={<Login uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/logout" element={<Logout />} />
