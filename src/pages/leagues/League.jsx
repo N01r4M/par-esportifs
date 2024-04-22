@@ -3,8 +3,7 @@ import pandaScoreApi from "../../pandaScoreApi";
 import {useEffect, useState} from "react";
 import {Loading} from "../Loading";
 import {AppBreadcrumb} from "../../components/Texts";
-import {AppCardLeague} from "../../components/Cards";
-import {Pagination} from "../../components/Pagination";
+import {AppCardSerie} from "../../components/Cards";
 
 export function League(props) {
     const [league, setLeague] = useState({});
@@ -39,7 +38,7 @@ export function League(props) {
                 <div className="leagues-list-container">
                     {
                         [...series].reverse().map(serie => (
-                            <AppCardLeague slug={serie.slug} name={serie.full_name} image_url={league.image_url} key={serie.slug} />
+                            <AppCardSerie slug={serie.slug} name={serie.full_name} league={league.slug} image_url={league.image_url} key={serie.slug} />
                         ))
                     }
                 </div>

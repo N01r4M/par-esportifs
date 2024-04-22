@@ -10,6 +10,7 @@ import Logout from "./pages/users/Logout";
 import {Profile} from "./pages/users/Profile";
 import {List} from "./pages/leagues/List";
 import {League} from "./pages/leagues/League";
+import {Serie} from "./pages/leagues/Serie";
 
 function App() {
     const token = sessionStorage.getItem('token');
@@ -33,7 +34,10 @@ function App() {
                 <Route path="/leagues/:page" element={<List uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/favorites/:page" element={<List uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/league/:slug" element={<League uuid={uuid} login={login} coins={coins} />} />
+                <Route path="/league/:slug/:serie" element={<Serie uuid={uuid} login={login} coins={coins} />} />
+
                 <Route path="/profile" element={<Profile uuid={uuid} login={login} coins={coins} />} />
+
                 <Route path="/login" element={<Login uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/signin" element={<Signup uuid={uuid} login={login} coins={coins} />} />

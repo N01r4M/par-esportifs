@@ -1,11 +1,11 @@
 .card {
   background-color: #59636E;
   border-radius: 10px;
-  width: fit-content;
   padding: 15px 20px;
 }
 .card .login-form-input {
   margin-top: 26px;
+  width: fit-content;
 }
 .card.leagues {
   display: flex;
@@ -14,6 +14,7 @@
   align-items: center;
   margin: 10px;
   cursor: pointer;
+  width: fit-content;
 }
 .card.leagues .title-container {
   display: flex;
@@ -28,6 +29,52 @@
 .card.leagues img {
   width: 6.25rem;
   height: 6.25rem;
+}
+.card.info {
+  margin: 0 15px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.card.info p {
+  margin: 0;
+}
+.card.matches {
+  width: 28%;
+  height: 500px;
+  text-align: center;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+.card.matches h4 {
+  margin: 0;
+  display: inline-block;
+}
+.card.match-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+  padding: 3px 0;
+}
+.card.match-info:hover {
+  cursor: pointer;
+  background-color: #343A40;
+}
+.card.match-info .team {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+.card.match-info .team img {
+  width: 1.8rem;
+}
+.card.match-info .team p {
+  margin: 5px 0 0 0;
+}
+.card.match-info .score p {
+  margin: 0;
 }
 
 /*# sourceMappingURL=Cards.css.map */
