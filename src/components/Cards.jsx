@@ -41,9 +41,9 @@ export function AppCardSerie(props) {
     )
 }
 
-export function AppCardInfo({children}) {
+export function AppCardInfo({children, ...props}) {
     return (
-        <div className="card info">
+        <div {...props}>
             {children}
         </div>
     )

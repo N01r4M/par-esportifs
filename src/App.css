@@ -38,4 +38,17 @@ a {
   color: #D0A34F;
 }
 
+.bg-logo {
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(0.4rem);
+  opacity: 0.15;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
 /*# sourceMappingURL=App.css.map */

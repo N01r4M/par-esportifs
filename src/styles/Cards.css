@@ -76,5 +76,37 @@
 .card.match-info .score p {
   margin: 0;
 }
+.card.match-header {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 100px;
+  padding: 5px 0;
+}
+.card.match-header .team {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.card.match-header .team img {
+  width: 2.5rem;
+  margin: 0 10px;
+}
+.card.team {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.card.team.two {
+  align-items: flex-end;
+}
+.card.team h4 {
+  margin: 0;
+}
+.card.team p {
+  margin: 8px 0;
+}
 
 /*# sourceMappingURL=Cards.css.map */

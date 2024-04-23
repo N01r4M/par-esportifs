@@ -11,6 +11,7 @@ import {Profile} from "./pages/users/Profile";
 import {List} from "./pages/leagues/List";
 import {League} from "./pages/leagues/League";
 import {Serie} from "./pages/leagues/Serie";
+import {Match} from "./pages/matches/Match";
 
 function App() {
     const token = sessionStorage.getItem('token');
@@ -35,6 +36,8 @@ function App() {
                 <Route path="/favorites/:page" element={<List uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/league/:slug" element={<League uuid={uuid} login={login} coins={coins} />} />
                 <Route path="/league/:slug/:serie" element={<Serie uuid={uuid} login={login} coins={coins} />} />
+
+                <Route path="/matches/:slug" element={<Match uuid={uuid} login={login} coins={coins} />} />
 
                 <Route path="/profile" element={<Profile uuid={uuid} login={login} coins={coins} />} />
 

@@ -97,12 +97,11 @@ export function Serie() {
     }, [slug])
 
     if (!loading && Object.keys(serie).length !== 0) {
-        console.log(pastMatches)
         return (
             <>
                 <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues", link: "/leagues/1" }, { text: `${serie.league.name}`, link: `/league/${serie.league.slug}` }, { text: `${serie.full_name}`, link: `/league/${serie.league.slug}/${serie.slug}` }]} />
 
-                <AppCardInfo>
+                <AppCardInfo className="card info">
                     <AppText text={`Débute le ${moment.utc(serie.begin_at).local().format("dddd D MMMM YYYY [à] HH[h]mm")}`} />
                     <AppText text={`Fini le ${moment.utc(serie.end_at).local().format("dddd D MMMM YYYY [à] HH[h]mm")}`} />
                     {

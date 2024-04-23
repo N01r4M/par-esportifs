@@ -95,4 +95,47 @@ $background: #343A40;
       }
     }
   }
+
+  &.match-header {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0 100px;
+    padding: 5px 0;
+
+    & .team {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      & img {
+        width: 2.5rem;
+        margin: 0 10px;
+      }
+    }
+  }
+
+  &.team {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &.two {
+      align-items: flex-end;
+    }
+
+    h4 {
+      margin: 0;
+    }
+
+    p {
+      margin: 8px 0;
+    }
+  }
+
+  &.stream {
+
+  }
 }
