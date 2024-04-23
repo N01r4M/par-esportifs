@@ -1,0 +1,39 @@
+$secondary: #029FB3;
+$error: #ff8383;
+
+.profile-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 15%;
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px;
+
+    &.password-container {
+      margin: 25px 0 30px 0;
+    }
+
+    &.forgotten-container {
+      margin-bottom: 30px;
+    }
+
+    .input {
+      height: 40px;
+      width: 280px;
+      border-radius: 8px;
+      border: 2px solid #FFFFFF;
+      padding: 0 10px;
+
+      &:focus {
+        outline: none;
+        border: 2px solid $secondary;
+      }
+    }
+
+    .error {
+      color: $error;
+    }
+  }
+}

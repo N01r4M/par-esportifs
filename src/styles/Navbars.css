@@ -1,0 +1,37 @@
+.navbar {
+  height: 60px !important;
+  display: flex;
+  align-items: center;
+}
+.navbar.navbar-logo {
+  justify-content: center;
+}
+.navbar.navbar-links {
+  justify-content: space-between;
+  margin: 0 15px;
+}
+.navbar.navbar-links .links .link {
+  margin: 0 10px;
+  color: #F0F0F0;
+  text-decoration: none;
+}
+.navbar.navbar-links .links .link.active {
+  color: #D0A34F;
+}
+.navbar.navbar-links .logout {
+  display: flex;
+  align-items: center;
+}
+.navbar.navbar-links .logout .coins {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+}
+.navbar.navbar-links .logout .coins p {
+  margin-right: 2px;
+}
+.navbar img {
+  height: 30px;
+}
+
+/*# sourceMappingURL=Navbars.css.map */

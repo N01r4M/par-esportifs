@@ -1,0 +1,32 @@
+.profile-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0 15%;
+}
+.profile-container .input-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px;
+}
+.profile-container .input-container.password-container {
+  margin: 25px 0 30px 0;
+}
+.profile-container .input-container.forgotten-container {
+  margin-bottom: 30px;
+}
+.profile-container .input-container .input {
+  height: 40px;
+  width: 280px;
+  border-radius: 8px;
+  border: 2px solid #FFFFFF;
+  padding: 0 10px;
+}
+.profile-container .input-container .input:focus {
+  outline: none;
+  border: 2px solid #029FB3;
+}
+.profile-container .input-container .error {
+  color: #ff8383;
+}
+
+/*# sourceMappingURL=Profile.css.map */

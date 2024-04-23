@@ -1,0 +1,23 @@
+.breadcrumb {
+  padding: 1rem;
+
+  & ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  & li:not(:last-child)::after {
+    display: inline-block;
+    margin: 0 0.25rem;
+    content: ">";
+  }
+
+  & li {
+    & a {
+      font-size: 22px;
+    }
+  }
+}

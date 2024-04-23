@@ -1,0 +1,32 @@
+$white: #F0F0F0;
+$primary: #D0A34F;
+
+.button {
+  border-radius: 8px;
+  background-color: $primary;
+  color: $white;
+  border: none;
+  font-family: "Dosis", sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  height: 40px;
+
+  &:active {
+    background-color: darken($primary, 5%);
+  }
+
+  &.link {
+    text-decoration: none;
+    width: 110px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &.classic {
+    height: 40px;
+    width: 100%;
+  }
+}
