@@ -17,7 +17,7 @@ export function AppCardLeague(props) {
     const navigate = useNavigate();
 
     return (
-        <div className="card leagues" onClick={() => navigate(`/league/${props.slug}`)}>
+        <div className="card leagues" onClick={() => navigate(`/${props.id}`)}>
             <div className="title-container">
                 <h5 className="title">{props.name}</h5>
                 <FavHeartEmpty />
@@ -31,7 +31,7 @@ export function AppCardSerie(props) {
     const navigate = useNavigate();
 
     return (
-        <div className="card leagues" onClick={() => navigate(`/league/${props.league}/${props.slug}`)}>
+        <div className="card leagues" onClick={() => navigate(`/${props.league}/${props.id}`)}>
             <div className="title-container">
                 <h5 className="title">{props.name}</h5>
                 <FavHeartEmpty />
@@ -57,7 +57,7 @@ export function AppCardMatches(props) {
 
             {
                 props.matches.map(match => {
-                    return match.opponents.length > 1 && <AppCardMatchInfo key={match.slug} match={match} />
+                    return match.opponents.length > 1 && <AppCardMatchInfo key={match.id} match={match} league={props.league} serie={props.serie} />
                 })
             }
         </div>
@@ -70,7 +70,7 @@ export function AppCardMatchInfo(props) {
     moment.locale("fr");
 
     return (
-        <div className="card match-info" onClick={() => navigate(`/matches/${props.match.slug}`)}>
+        <div className="card match-info" onClick={() => navigate(`/${props.league}/${props.serie}/${props.match.id}`)}>
             <div className="team one">
                 <img src={props.match.opponents[0].opponent.image_url} alt="Logo équipe"/>
                 <AppText text={props.match.opponents[0].opponent.name} />

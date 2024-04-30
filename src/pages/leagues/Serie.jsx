@@ -15,12 +15,13 @@ export function Serie() {
     const [runningMatches, setRunningMatches] = useState([]);
     const [upcomingMatches, setUpcomingMatches] = useState([]);
     const [loading, setLoading] = useState(true);
-    const slug = useParams().serie;
+    const id = useParams().idSerie;
+    const idLeague = useParams().idLeague;
 
     moment.locale("fr");
 
     const getSerie = () => {
-        pandaScoreApi.get(`series/${slug}`)
+        pandaScoreApi.get(`series/${id}`)
             .then(res => {
                 const status = res.status;
 
@@ -53,7 +54,7 @@ export function Serie() {
     }
 
     const getPastMatches = () => {
-        pandaScoreApi.get(`series/${slug}/matches/past`)
+        pandaScoreApi.get(`series/${id}/matches/past`)
             .then(res => {
                 const status = res.status;
 
@@ -66,7 +67,7 @@ export function Serie() {
     }
 
     const getRunningMatches = () => {
-        pandaScoreApi.get(`series/${slug}/matches/running`)
+        pandaScoreApi.get(`series/${id}/matches/running`)
             .then(res => {
                 const status = res.status;
 
@@ -79,7 +80,7 @@ export function Serie() {
     }
 
     const getUpcomingMatches = () => {
-        pandaScoreApi.get(`series/${slug}/matches/upcoming`)
+        pandaScoreApi.get(`series/${id}/matches/upcoming`)
             .then(res => {
                 const status = res.status;
 
@@ -94,12 +95,12 @@ export function Serie() {
     useEffect(() => {
         getSerie()
         setLoading(false);
-    }, [slug])
+    }, [id])
 
     if (!loading && Object.keys(serie).length !== 0) {
         return (
             <>
-                <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues", link: "/leagues/1" }, { text: `${serie.league.name}`, link: `/league/${serie.league.slug}` }, { text: `${serie.full_name}`, link: `/league/${serie.league.slug}/${serie.slug}` }]} />
+                <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues", link: "/leagues/1" }, { text: `${serie.league.name}`, link: `/${serie.league.id}` }, { text: `${serie.full_name}`, link: `/${serie.league.id}/${serie.id}` }]} />
 
                 <AppCardInfo className="card info">
                     <AppText text={`Débute le ${moment.utc(serie.begin_at).local().format("dddd D MMMM YYYY [à] HH[h]mm")}`} />
@@ -110,9 +111,9 @@ export function Serie() {
                 </AppCardInfo>
 
                 <div className="matches-container">
-                    <AppCardMatches matches={pastMatches} title={'Terminés'} />
-                    <AppCardMatches matches={runningMatches} title={'En cours'} />
-                    <AppCardMatches matches={upcomingMatches} title={'A venir'} />
+                    <AppCardMatches matches={pastMatches} title={'Terminés'} league={idLeague} serie={id} />
+                    <AppCardMatches matches={runningMatches} title={'En cours'} league={idLeague} serie={id} />
+                    <AppCardMatches matches={upcomingMatches} title={'A venir'} league={idLeague} serie={id} />
                 </div>
             </>
         )

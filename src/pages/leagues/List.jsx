@@ -48,7 +48,7 @@ export function List() {
                 <div className="leagues-list-container">
                     {
                         leagues.map((league) => (
-                            <AppCardLeague slug={league.slug} name={league.name} image_url={league.image_url} />
+                            <AppCardLeague id={league.id} name={league.name} image_url={league.image_url} />
                         ))
                     }
                 </div>

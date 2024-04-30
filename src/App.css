@@ -50,5 +50,9 @@ a {
   left: 0;
   position: absolute;
 }
+.bg-logo.large {
+  background-size: 50%;
+  z-index: 0;
+}
 
 /*# sourceMappingURL=App.css.map */

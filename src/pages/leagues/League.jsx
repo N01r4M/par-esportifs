@@ -9,10 +9,10 @@ export function League(props) {
     const [league, setLeague] = useState({});
     const [series, setSeries] = useState([]);
     const [loading, setLoading] = useState(true);
-    const slug = useParams().slug;
+    const id = useParams().idLeague;
 
     const getLeague = () => {
-        pandaScoreApi.get(`leagues/${slug}`)
+        pandaScoreApi.get(`leagues/${id}`)
         .then(res => {
             const status = res.status;
 
@@ -28,17 +28,17 @@ export function League(props) {
     useEffect(() => {
         getLeague();
         setLoading(false);
-    }, [slug])
+    }, [id])
 
     if (!loading && league.name !== undefined) {
         return (
             <>
-                <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues", link: "/leagues/1" }, { text: `${league.name}`, link: `/league/${slug}` }]} />
+                <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues", link: "/leagues/1" }, { text: `${league.name}`, link: `/${id}` }]} />
 
                 <div className="leagues-list-container">
                     {
                         [...series].reverse().map(serie => (
-                            <AppCardSerie slug={serie.slug} name={serie.full_name} league={league.slug} image_url={league.image_url} key={serie.slug} />
+                            <AppCardSerie id={serie.id} name={serie.full_name} league={league.id} image_url={league.image_url} key={serie.id} />
                         ))
                     }
                 </div>

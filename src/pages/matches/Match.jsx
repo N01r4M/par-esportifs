@@ -13,11 +13,13 @@ export function Match() {
     const [team2, setTeam2] = useState({});
     const [channel, setChannel] = useState({});
     const [loading, setLoading] = useState(true);
-    const slug = useParams().slug;
+    const id = useParams().idMatch;
+    const idLeague = useParams().idLeague;
+    const idSerie = useParams().idSerie;
     const navigate = useNavigate();
 
     const getMatch = () => {
-        pandaScoreApi.get(`matches/${slug}`)
+        pandaScoreApi.get(`matches/${id}`)
             .then((res) => {
                 const status = res.status;
 
@@ -27,16 +29,16 @@ export function Match() {
 
                     setChannel(data.streams_list[0].embed_url.split("=")[1])
 
-                    getTeam1(data.opponents[0].opponent.slug)
-                    getTeam2(data.opponents[1].opponent.slug)
+                    getTeam1(data.opponents[0].opponent.id)
+                    getTeam2(data.opponents[1].opponent.id)
                 } else {
                     console.log(`HTTP status: ${status}`);
                 }
             })
     }
 
-    const getTeam1 = (slug) => {
-        pandaScoreApi.get(`teams/${slug}`)
+    const getTeam1 = (id) => {
+        pandaScoreApi.get(`teams/${id}`)
             .then((res) => {
                 const status = res.status;
 
@@ -48,8 +50,8 @@ export function Match() {
             })
     }
 
-    const getTeam2 = (slug) => {
-        pandaScoreApi.get(`teams/${slug}`)
+    const getTeam2 = (id) => {
+        pandaScoreApi.get(`teams/${id}`)
             .then((res) => {
                 const status = res.status;
 
@@ -64,15 +66,15 @@ export function Match() {
     useEffect(() => {
         getMatch();
         setLoading(false);
-    }, [slug]);
+    }, [id]);
 
     if (!loading && Object.keys(match).length !== 0 && Object.keys(team1).length !== 0 && Object.keys(team2).length !== 0) {
         return (
             <>
-                <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues", link: "/leagues/1" }, { text: `${match.league.name}`, link: `/league/${match.league.slug}` }, { text: `${match.serie.full_name}`, link: `/league/${match.league.slug}/${match.serie.slug}` }, { text: `${match.name}`, link: `/matches/${match.slug}` }]} />
+                <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues", link: "/leagues/1" }, { text: `${match.league.name}`, link: `/${match.league.id}` }, { text: `${match.serie.full_name}`, link: `/${match.league.id}/${match.serie.id}` }, { text: `${match.name}`, link: `/${match.league.id}/${match.serie.id}/${match.id}` }]} />
 
                 <AppCardInfo className="card match-header">
-                    <div className="team" onClick={() => navigate(`/teams/${team1.slug}`)} >
+                    <div className="team" onClick={() => navigate(`/${idLeague}/${idSerie}/${id}/${team1.id}`)} >
                         <img src={team1.image_url} alt="Logo équipe"/>
                         <AppText text={team1.name}/>
                     </div>
@@ -91,7 +93,7 @@ export function Match() {
                         </div>
                     }
 
-                    <div className="team" onClick={() => navigate(`/teams/${team2.slug}`)}>
+                    <div className="team" onClick={() => navigate(`/${idLeague}/${idSerie}/${id}/${team2.id}`)}>
                         <AppText text={team2.name}/>
                         <img src={team2.image_url} alt="Logo équipe"/>
                     </div>
@@ -116,7 +118,7 @@ export function Match() {
                     >
                     </iframe>
 
-                    <AppCardInfo className="card team two" onCLick={() => navigate(`/teams/${team2.slug}`)}>
+                    <AppCardInfo className="card team two" onCLick={() => navigate(`/teams/${team2.id}`)}>
                         <div className="bg-logo" style={{ backgroundImage: `url(${team2.image_url})` }}></div>
 
                         {
