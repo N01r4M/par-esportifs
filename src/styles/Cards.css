@@ -108,5 +108,16 @@
 .card.team p {
   margin: 8px 0;
 }
+.card.player {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+.card.player .img-player {
+  margin-right: 10px;
+}
+.card.player .img-player img {
+  width: 100px;
+}
 
 /*# sourceMappingURL=Cards.css.map */
