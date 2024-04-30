@@ -63,4 +63,9 @@ a {
   top: 0;
   left: 0;
   position: absolute;
+
+  &.large {
+    background-size: 50%;
+    z-index: 0;
+  }
 }
