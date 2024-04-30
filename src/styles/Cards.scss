@@ -138,4 +138,18 @@ $background: #343A40;
   &.stream {
 
   }
+
+  &.player {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+
+    & .img-player {
+      margin-right: 10px;
+
+      & img {
+        width: 100px;
+      }
+    }
+  }
 }

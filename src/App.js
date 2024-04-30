@@ -13,6 +13,7 @@ import {League} from "./pages/leagues/League";
 import {Serie} from "./pages/leagues/Serie";
 import {Match} from "./pages/matches/Match";
 import {Team} from "./pages/teams/Team";
+import {Player} from "./pages/players/Player";
 
 function App() {
     const token = sessionStorage.getItem('token');
@@ -41,6 +42,8 @@ function App() {
                 <Route path="/:idLeague/:idSerie/:idMatch" element={<Match uuid={uuid} login={login} coins={coins} />} />
 
                 <Route path="/:idLeague/:idSerie/:idMatch/:idTeam" element={<Team uuid={uuid} login={login} coins={coins} />} />
+
+                <Route path="/:idLeague/:idSerie/:idMatch/:idTeam/:idPlayer" element={<Player uuid={uuid} login={login} coins={coins} />} />
 
                 <Route path="/profile" element={<Profile uuid={uuid} login={login} coins={coins} />} />
 
