@@ -17,15 +17,14 @@ import {Player} from "./pages/players/Player";
 
 function App() {
     const token = sessionStorage.getItem('token');
+    const coins = sessionStorage.getItem('coins');
     const [email, setEmail] = useState('');
-    const [coins, setCoins] = useState(null);
     const login = token !== null;
 
     useEffect(() => {
         if (login) {
             const decodedToken = jwtDecode(token);
             setEmail(decodedToken.email);
-            setCoins(decodedToken.coins);
         }
     }, []);
 

@@ -17,7 +17,7 @@ const SignupSchema = Yup.object().shape({
 
 export function Signup(props) {
     if (props.login) {
-        return <Navigate to={"/"} state={{ coins: props.coins, uuid: props.uuid }} replace={true} />
+        return <Navigate to={"/"} state={{ coins: props.coins, email: props.email }} replace={true} />
     }
 
     return (
@@ -61,6 +61,7 @@ export function Signup(props) {
                                                     const token = JSON.stringify(res.data.token);
 
                                                     sessionStorage.setItem('token', token);
+                                                    sessionStorage.setItem('coins', '100');
                                                     window.location.reload();
                                                 } else {
                                                     console.log(`Status HTTP: ${status}`);

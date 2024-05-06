@@ -17,7 +17,7 @@ const LoginSchema = Yup.object().shape({
 
 export function Login(props) {
     if (props.login) {
-        return <Navigate to={"/"} state={{ coins: props.coins, uuid: props.uuid }} replace={true} />;
+        return <Navigate to={"/"} state={{ coins: props.coins, email: props.email }} replace={true} />;
     }
 
     return (
@@ -33,7 +33,7 @@ export function Login(props) {
                         }}
                         validationSchema={LoginSchema}
                         onSubmit={(values) => {
-                            paresportifsAuth.post('auth', {
+                            paresportifsAuth.post('authentication_token', {
                                 "email": values.email,
                                 "password": values.password
                             })
@@ -42,43 +42,60 @@ export function Login(props) {
 
                                 if (status === "200") {
                                     const token = JSON.stringify(response.data.token);
-                                    const decodedToken = jwtDecode(token);
-                                    const uuid = decodedToken.uuid;
 
-                                    sessionStorage.setItem('uuid', uuid);
                                     sessionStorage.setItem('token', token);
 
-                                    paresportifsApi.get(`users/${uuid}`)
-                                        .then((res) => {
-                                            const status = JSON.stringify(res.status);
+                                    const decodedToken = jwtDecode(token);
+                                    const lastConnection = decodedToken['lastConnection'];
+                                    const email = decodedToken['email'];
+                                    const dateTime = new Date(lastConnection['date']);
 
-                                            if (status === "200") {
-                                                const lastLog = JSON.stringify(res.data.lastConnection);
-                                                const date = lastLog.substring(1, 11)
-                                                const dateLastLog = new Date(date);
-                                                const coins = JSON.stringify(res.data.coins);
+                                    if (!isSameDay(dateTime, new Date())) {
+                                        paresportifsApi.get(`users?email=${email}`)
+                                            .then((res) => {
+                                                const status = JSON.stringify(res.status);
 
-                                                if (!isSameDay(dateLastLog, new Date())) {
-                                                    paresportifsApi.patch(`users/${uuid}`, {
+                                                if (status === "200") {
+                                                    const id = res.data['hydra:member'][0]['id'];
+                                                    let coins = res.data['hydra:member'][0]['coins'];
+
+                                                    paresportifsApi.patch(`users/${id}`, {
                                                         "coins": parseInt(coins) + 20,
                                                         "lastConnection": new Date()
+                                                    }, {
+                                                        headers: {
+                                                            'content-type': 'application/merge-patch+json'
+                                                        }
                                                     })
                                                         .then((res) => {
                                                             const status = JSON.stringify(res.status);
 
                                                             if (status === "200") {
+                                                                coins += 20;
+                                                                sessionStorage.setItem('coins', coins.toString());
                                                                 window.location.reload();
                                                             } else {
-                                                                console.log(`Status HTTP: ${status}`);
+                                                                console.log(`Status HTTP: ${status}`)
                                                             }
                                                         })
                                                 } else {
-                                                    window.location.reload();
+                                                    console.log(`Status HTTP: ${status}`)
                                                 }
-                                            } else {
-                                                console.log(`Status HTTP: ${status}`);
-                                            }
-                                        })
+                                            })
+                                    } else {
+                                        paresportifsApi.get(`users?email=${email}`)
+                                            .then((res) => {
+                                                const status = JSON.stringify(res.status);
+
+                                                if (status === "200") {
+                                                    const coins = res.data['hydra:member'][0]['coins'];
+                                                    sessionStorage.setItem('coins', coins.toString());
+                                                    window.location.reload();
+                                                } else {
+                                                    console.log(`Status HTTP: ${status}`)
+                                                }
+                                            })
+                                    }
                                 } else {
                                     console.log(`Status HTTP: ${status}`);
                                 }
