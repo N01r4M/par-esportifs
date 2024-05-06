@@ -4,23 +4,23 @@ import './App.css';
 import {Login} from "./pages/users/Login";
 import {Signup} from "./pages/users/Signup";
 import {ForgottenPwd} from "./pages/users/ForgottenPwd";
-import paresportifsApi from "./paresportifsApi";
 import {AppNavbar, AppNavbarLogo} from "./components/Navbar";
 import Logout from "./pages/users/Logout";
 import {Profile} from "./pages/users/Profile";
+import {jwtDecode} from "jwt-decode";
 
 function App() {
     const token = sessionStorage.getItem('token');
-    const uuid = sessionStorage.getItem('uuid');
+    const [email, setEmail] = useState('');
+    const [coins, setCoins] = useState(null);
     const login = token !== null;
-    const [coins, setCoins] = useState();
 
     useEffect(() => {
-        login && paresportifsApi.get(`users/${uuid}`)
-            .then(res => {
-                setCoins(res.data.coins)
-            })
-            .catch(err => console.log(err));
+        if (login) {
+            const decodedToken = jwtDecode(token);
+            setEmail(decodedToken.email);
+            setCoins(decodedToken.coins);
+        }
     }, []);
 
     return (
@@ -33,10 +33,10 @@ function App() {
             }
 
             <Routes>
-                <Route path="/profile" element={<Profile uuid={uuid} login={login} coins={coins} />} />
-                <Route path="/login" element={<Login uuid={uuid} login={login} coins={coins} />} />
+                <Route path="/profile" element={<Profile email={email} login={login} coins={coins} />} />
+                <Route path="/login" element={<Login email={email} login={login} coins={coins} />} />
                 <Route path="/logout" element={<Logout />} />
-                <Route path="/signin" element={<Signup uuid={uuid} login={login} coins={coins} />} />
+                <Route path="/signin" element={<Signup email={email} login={login} coins={coins} />} />
                 <Route path="/forgotten-password" element={<ForgottenPwd />} />
             </Routes>
         </>
