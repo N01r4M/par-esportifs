@@ -10,6 +10,25 @@ html, body {
   margin: 0;
 }
 
+body ::-webkit-scrollbar {
+  width: 10px;
+  height: 12px;
+}
+body ::-webkit-scrollbar-track {
+  background-color: #59636E;
+  border-radius: 10px;
+}
+body ::-webkit-scrollbar-thumb {
+  background-color: #343A40;
+  border-radius: 20px;
+}
+body ::-webkit-scrollbar-button {
+  display: none;
+}
+body ::-webkit-scrollbar-corner {
+  display: none;
+}
+
 h1 {
   font-size: 60px;
   font-weight: 600;
@@ -17,6 +36,23 @@ h1 {
 
 a {
   color: #D0A34F;
+}
+
+.bg-logo {
+  background-size: 80%;
+  background-repeat: no-repeat;
+  background-position: center;
+  filter: blur(0.4rem);
+  opacity: 0.15;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+.bg-logo.large {
+  background-size: 50%;
+  z-index: 0;
 }
 
 /*# sourceMappingURL=App.css.map */

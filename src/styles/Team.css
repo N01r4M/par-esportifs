@@ -1,0 +1,20 @@
+.infos-container {
+  display: flex;
+  margin: 0 15px;
+  justify-content: space-between;
+}
+.infos-container .card {
+  width: 45%;
+}
+.infos-container .card.players {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.infos-container .card.players div:hover {
+  cursor: pointer;
+}
+.infos-container .card p {
+  margin: 3px 0;
+}
+
+/*# sourceMappingURL=Team.css.map */

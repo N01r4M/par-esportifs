@@ -1,0 +1,22 @@
+.infos-container {
+  display: flex;
+  margin: 0 15px;
+  justify-content: space-between;
+
+  & .card {
+    width: 45%;
+
+    &.players {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      & div:hover {
+        cursor: pointer;
+      }
+    }
+
+    & p {
+      margin: 3px 0;
+    }
+  }
+}
