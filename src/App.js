@@ -33,16 +33,16 @@ function App() {
             <AppNavbar coins={100} />
 
             <Routes>
-                <Route path="/leagues/:page" element={<List uuid={uuid} login={login} coins={coins} />} />
-                <Route path="/favorites/:page" element={<List uuid={uuid} login={login} coins={coins} />} />
-                <Route path="/:idLeague" element={<League uuid={uuid} login={login} coins={coins} />} />
-                <Route path="/:idLeague/:idSerie" element={<Serie uuid={uuid} login={login} coins={coins} />} />
+                <Route path="/leagues/:page" element={<List email={email} login={login} coins={coins} />} />
+                <Route path="/favorites/:page" element={<List email={email} login={login} coins={coins} />} />
+                <Route path="/:idLeague" element={<League email={email} login={login} coins={coins} />} />
+                <Route path="/:idLeague/:idSerie" element={<Serie email={email} login={login} coins={coins} />} />
 
-                <Route path="/:idLeague/:idSerie/:idMatch" element={<Match uuid={uuid} login={login} coins={coins} />} />
+                <Route path="/:idLeague/:idSerie/:idMatch" element={<Match email={email} login={login} coins={coins} />} />
 
-                <Route path="/:idLeague/:idSerie/:idMatch/:idTeam" element={<Team uuid={uuid} login={login} coins={coins} />} />
+                <Route path="/:idLeague/:idSerie/:idMatch/:idTeam" element={<Team email={email} login={login} coins={coins} />} />
 
-                <Route path="/:idLeague/:idSerie/:idMatch/:idTeam/:idPlayer" element={<Player uuid={uuid} login={login} coins={coins} />} />
+                <Route path="/:idLeague/:idSerie/:idMatch/:idTeam/:idPlayer" element={<Player email={email} login={login} coins={coins} />} />
 
                 <Route path="/profile" element={<Profile email={email} login={login} coins={coins} />} />
                 <Route path="/login" element={<Login email={email} login={login} coins={coins} />} />
