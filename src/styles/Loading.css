@@ -1,0 +1,13 @@
+.loader-container {
+  height: 90vh;
+  width: 90vh;
+}
+
+.loader-child {
+  position: absolute;
+  top: 40%;
+  left: 45%;
+  transform: "translate(-50%, -50%)";
+}
+
+/*# sourceMappingURL=Loading.css.map */
