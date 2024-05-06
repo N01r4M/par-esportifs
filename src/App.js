@@ -30,7 +30,7 @@ function App() {
 
     return (
         <>
-            <AppNavbar coins={100} />
+            {login ? <AppNavbar coins={coins}/> : <AppNavbarLogo />}
 
             <Routes>
                 <Route path="/leagues/:page" element={<List email={email} login={login} coins={coins} />} />
