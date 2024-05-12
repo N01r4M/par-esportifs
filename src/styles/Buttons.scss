@@ -29,4 +29,14 @@ $primary: #D0A34F;
     height: 40px;
     width: 100%;
   }
+
+  &.bet {
+    padding: 0 20px;
+    align-self: center;
+
+    &.close {
+      background-color: #83122A;
+      margin-right: 5px;
+    }
+  }
 }

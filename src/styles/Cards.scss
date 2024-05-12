@@ -17,7 +17,6 @@ $background: #343A40;
     flex-wrap: wrap;
     align-items: center;
     margin: 10px;
-    cursor: pointer;
     width: fit-content;
 
     & .title-container {
@@ -32,9 +31,14 @@ $background: #343A40;
       }
     }
 
+    & svg {
+      cursor: pointer;
+    }
+
     & img {
       width: 6.25rem;
       height: 6.25rem;
+      cursor: pointer;
     }
   }
 

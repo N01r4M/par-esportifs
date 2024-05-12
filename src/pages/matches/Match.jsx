@@ -6,17 +6,26 @@ import {Loading} from "../Loading";
 import {AppCardInfo} from "../../components/Cards";
 import moment from "moment/moment";
 import "../../styles/Match.scss";
+import "../../styles/Buttons.scss";
+import Modal from 'react-modal';
+import {ErrorMessage, Field, Form, Formik} from "formik";
+import * as Yup from "yup";
+import paresportifsApi from "../../paresportifsApi";
+import {jwtDecode} from "jwt-decode";
 
-export function Match() {
+export function Match(props) {
     const [match, setMatch] = useState({});
     const [team1, setTeam1] = useState({});
     const [team2, setTeam2] = useState({});
     const [channel, setChannel] = useState({});
     const [loading, setLoading] = useState(true);
+    const [modalIsOpen, setModalIsOpen] = useState(false);
     const id = useParams().idMatch;
     const idLeague = useParams().idLeague;
     const idSerie = useParams().idSerie;
     const navigate = useNavigate();
+    const decodeToken = jwtDecode(sessionStorage.getItem("token"));
+    const idUser = decodeToken['id'];
 
     const getMatch = () => {
         pandaScoreApi.get(`matches/${id}`)
@@ -63,15 +72,34 @@ export function Match() {
             })
     }
 
+    const openModal = () => {
+        setModalIsOpen(true);
+    }
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    }
+
     useEffect(() => {
         getMatch();
         setLoading(false);
     }, [id]);
 
     if (!loading && Object.keys(match).length !== 0 && Object.keys(team1).length !== 0 && Object.keys(team2).length !== 0) {
+        const BetSchema = Yup.object().shape({
+            coins: Yup.number().integer("Il faut un nombre entier").min(1, "Vous devez parier au moins 1 coin").max(props.coins, `Vous ne pouvez pas parier plus de ${props.coins} coins`).required("Ce champs est obligatoire"),
+            team: Yup.string().required().oneOf([team1.id.toString(), team2.id.toString()])
+        })
+
         return (
             <>
-                <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues", link: "/leagues/1" }, { text: `${match.league.name}`, link: `/${match.league.id}` }, { text: `${match.serie.full_name}`, link: `/${match.league.id}/${match.serie.id}` }, { text: `${match.name}`, link: `/${match.league.id}/${match.serie.id}/${match.id}` }]} />
+                <div className="infos-container">
+                    <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues", link: "/leagues/1" }, { text: `${match.league.name}`, link: `/${match.league.id}` }, { text: `${match.serie.full_name}`, link: `/${match.league.id}/${match.serie.id}` }, { text: `${match.name}`, link: `/${match.league.id}/${match.serie.id}/${match.id}` }]} />
+
+                    {
+                        match.status === "not_started" && <button className="button bet" onClick={openModal}>Parier</button>
+                    }
+                </div>
 
                 <AppCardInfo className="card match-header">
                     <div className="team" onClick={() => navigate(`/${idLeague}/${idSerie}/${id}/${team1.id}`)} >
@@ -127,6 +155,83 @@ export function Match() {
                             })
                         }
                     </AppCardInfo>
+
+                    <Modal isOpen={modalIsOpen} onRequestClose={closeModal} className="modal">
+                        <Formik
+                            initialValues={{
+                                coins: 0,
+                                team: team1.id.toString()
+                            }}
+                            validationSchema={BetSchema}
+                            onSubmit={(values) => {
+                                const betCoins = parseInt(values.coins)
+
+                                //Ajouter le pari dans la base de données
+                                paresportifsApi.post('bets', {
+                                    "user": `/api/users/${idUser}`,
+                                    "idMatch": match.id.toString(),
+                                    "startAt": match.scheduled_at,
+                                    "teamId": parseInt(values.team),
+                                    "nbCoins": betCoins
+                                })
+                                .then((res) => {
+                                    const status = res.status;
+
+                                    if (status === 201) {
+                                        //Modifier le nombre de coins de l'utilisateur
+                                        const coins = props.coins - betCoins;
+                                        sessionStorage.removeItem("coins")
+                                        sessionStorage.setItem("coins", coins);
+
+                                        paresportifsApi.patch(`users/${idUser}`, {
+                                            "coins": coins
+                                        }, {
+                                            headers: {
+                                                'content-type': 'application/merge-patch+json'
+                                            }
+                                        })
+                                            .then((res) => {
+                                                const status = res.status;
+
+                                                if (status === 200) {
+                                                    window.location.reload();
+                                                } else {
+                                                    console.log(`Status HTTP: ${status}`)
+                                                }
+                                            })
+                                    } else {
+                                        console.log(`Status HTTP: ${status}`)
+                                    }
+                                })
+                            }}
+                        >
+                            {() => (
+                                <Form>
+                                    <div className="input-container coins">
+                                        <label htmlFor="coins" className="input-label">Nombre de coins à parier</label>
+                                        <Field type="int" name="coins" className="input" placeholder="Nombre de coins"/>
+                                        <ErrorMessage name="coins" component="small" className="error"/>
+                                    </div>
+
+                                    <div className="input-container team">
+                                        <label htmlFor="team" className="input-label">Equipe soutenue</label>
+                                        <Field as="select" name="team" className="input">
+                                            <option value={team1.id}>{team1.name}</option>
+                                            <option value={team2.id}>{team2.name}</option>
+                                        </Field>
+                                        <ErrorMessage name="team" component="small" className="error"/>
+                                    </div>
+
+                                    <div className="button-container">
+                                        <button onClick={closeModal} className="button bet close">Fermer</button>
+                                        <button type="submit" className="button bet">Parier</button>
+                                    </div>
+                                </Form>
+                            )}
+                        </Formik>
+
+
+                    </Modal>
                 </div>
             </>
         )

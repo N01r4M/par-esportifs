@@ -1,7 +1,54 @@
+$secondary: #029FB3;
+$error: #ff8383;
+$cardBackground: #59636E;
+
 .container-match {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin: 35px 15px 15px 15px;
+}
+
+.modal {
+  position: absolute;
+  inset: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  background: $cardBackground;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  & .input-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    & .input {
+      height: 40px;
+      width: 280px;
+      border-radius: 8px;
+      border: 2px solid #FFFFFF;
+      padding: 0 10px;
+
+      &:focus {
+        outline: none;
+        border: 2px solid $secondary;
+      }
+    }
+
+    .error {
+      color: $error;
+    }
+  }
+
+  & .button-container {
+    display: flex;
+    justify-content: flex-end;
+  }
 }

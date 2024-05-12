@@ -46,7 +46,6 @@ export function Player() {
     }, [idPlayer])
 
     if (!loading && Object.keys(player).length !== 0 && Object.keys(match).length !== 0) {
-        console.log(player);
         return (
             <>
                 <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues", link: "/leagues/1" }, { text: `${match.league.name}`, link: `/${match.league.id}` }, { text: `${match.serie.full_name}`, link: `/${match.league.id}/${match.serie.id}` }, { text: `${match.name}`, link: `/${match.league.id}/${match.serie.id}/${match.id}` }, { text: `${player.current_team.name}`, link: `/${match.league.id}/${match.serie.id}/${match.id}/${player.current_team.id}` }, { text: `${player.name}`, link: `/${match.league.id}/${match.serie.id}/${match.id}/${player.current_team.id}/${player.id}` }]} />

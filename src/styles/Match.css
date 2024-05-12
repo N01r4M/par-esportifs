@@ -6,4 +6,42 @@
   margin: 35px 15px 15px 15px;
 }
 
+.modal {
+  position: absolute;
+  inset: 40px;
+  border: 1px solid rgb(204, 204, 204);
+  background: #59636E;
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.modal .input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.modal .input-container .input {
+  height: 40px;
+  width: 280px;
+  border-radius: 8px;
+  border: 2px solid #FFFFFF;
+  padding: 0 10px;
+}
+.modal .input-container .input:focus {
+  outline: none;
+  border: 2px solid #029FB3;
+}
+.modal .input-container .error {
+  color: #ff8383;
+}
+.modal .button-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
 /*# sourceMappingURL=Match.css.map */

@@ -13,7 +13,6 @@
   flex-wrap: wrap;
   align-items: center;
   margin: 10px;
-  cursor: pointer;
   width: fit-content;
 }
 .card.leagues .title-container {
@@ -26,9 +25,13 @@
 .card.leagues .title-container h5 {
   margin: 0;
 }
+.card.leagues svg {
+  cursor: pointer;
+}
 .card.leagues img {
   width: 6.25rem;
   height: 6.25rem;
+  cursor: pointer;
 }
 .card.info {
   margin: 0 15px;

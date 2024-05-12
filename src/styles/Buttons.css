@@ -24,5 +24,13 @@
   height: 40px;
   width: 100%;
 }
+.button.bet {
+  padding: 0 20px;
+  align-self: center;
+}
+.button.bet.close {
+  background-color: #83122A;
+  margin-right: 5px;
+}
 
 /*# sourceMappingURL=Buttons.css.map */
