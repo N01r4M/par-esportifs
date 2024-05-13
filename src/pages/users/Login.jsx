@@ -17,7 +17,70 @@ const LoginSchema = Yup.object().shape({
 
 export function Login(props) {
     if (props.login) {
-        return <Navigate to={"/"} state={{ coins: props.coins, email: props.email }} replace={true} />;
+        return <Navigate to={"/bets"} state={{ coins: props.coins, email: props.email }} replace={true} />;
+    }
+
+    /**
+     * Donne les 20 coins quotidien à l'utilisateur si c'est sa première connexion de la journée
+     *
+     * @param email
+     * @param idUser
+     */
+    const giveCoins = (email, idUser) => {
+        paresportifsApi.get(`users?email=${email}`)
+            .then((res) => {
+                const status = JSON.stringify(res.status);
+
+                if (status === "200") {
+                    const id = res.data['hydra:member'][0]['id'];
+                    let coins = res.data['hydra:member'][0]['coins'];
+
+                    paresportifsApi.patch(`users/${id}`, {
+                        "coins": parseInt(coins) + 20,
+                        "lastConnection": new Date()
+                    }, {
+                        headers: {
+                            'content-type': 'application/merge-patch+json'
+                        }
+                    })
+                        .then((res) => {
+                            const status = JSON.stringify(res.status);
+
+                            if (status === "200") {
+                                coins += 20;
+                                sessionStorage.setItem('coins', coins.toString());
+                                window.location.reload();
+                                // checkBets(idUser, coins);
+                            } else {
+                                console.log(`Status HTTP: ${status}`)
+                            }
+                        })
+                } else {
+                    console.log(`Status HTTP: ${status}`)
+                }
+            })
+    }
+
+    /**
+     * Connecte l'utilisateyr
+     *
+     * @param email
+     * @param idUser
+     */
+    const login = (email, idUser) => {
+        paresportifsApi.get(`users?email=${email}`)
+            .then((res) => {
+                const status = JSON.stringify(res.status);
+
+                if (status === "200") {
+                    const coins = res.data['hydra:member'][0]['coins'];
+                    sessionStorage.setItem('coins', coins.toString());
+                    window.location.reload();
+                    // checkBets(idUser, coins);
+                } else {
+                    console.log(`Status HTTP: ${status}`)
+                }
+            })
     }
 
     return (
@@ -46,55 +109,15 @@ export function Login(props) {
                                     sessionStorage.setItem('token', token);
 
                                     const decodedToken = jwtDecode(token);
+                                    const idUser = decodedToken['id'];
                                     const lastConnection = decodedToken['lastConnection'];
                                     const email = decodedToken['email'];
                                     const dateTime = new Date(lastConnection['date']);
 
                                     if (!isSameDay(dateTime, new Date())) {
-                                        paresportifsApi.get(`users?email=${email}`)
-                                            .then((res) => {
-                                                const status = JSON.stringify(res.status);
-
-                                                if (status === "200") {
-                                                    const id = res.data['hydra:member'][0]['id'];
-                                                    let coins = res.data['hydra:member'][0]['coins'];
-
-                                                    paresportifsApi.patch(`users/${id}`, {
-                                                        "coins": parseInt(coins) + 20,
-                                                        "lastConnection": new Date()
-                                                    }, {
-                                                        headers: {
-                                                            'content-type': 'application/merge-patch+json'
-                                                        }
-                                                    })
-                                                        .then((res) => {
-                                                            const status = JSON.stringify(res.status);
-
-                                                            if (status === "200") {
-                                                                coins += 20;
-                                                                sessionStorage.setItem('coins', coins.toString());
-                                                                window.location.reload();
-                                                            } else {
-                                                                console.log(`Status HTTP: ${status}`)
-                                                            }
-                                                        })
-                                                } else {
-                                                    console.log(`Status HTTP: ${status}`)
-                                                }
-                                            })
+                                        giveCoins(email, idUser);
                                     } else {
-                                        paresportifsApi.get(`users?email=${email}`)
-                                            .then((res) => {
-                                                const status = JSON.stringify(res.status);
-
-                                                if (status === "200") {
-                                                    const coins = res.data['hydra:member'][0]['coins'];
-                                                    sessionStorage.setItem('coins', coins.toString());
-                                                    window.location.reload();
-                                                } else {
-                                                    console.log(`Status HTTP: ${status}`)
-                                                }
-                                            })
+                                        login(email, idUser);
                                     }
                                 } else {
                                     console.log(`Status HTTP: ${status}`);

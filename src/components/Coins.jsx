@@ -1,5 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import "../styles/Coins.scss"
+import paresportifsApi from "../paresportifsApi";
+import {jwtDecode} from "jwt-decode";
 
 export function Coins(props) {
     return (
@@ -20,8 +22,74 @@ export function FavHeart(props) {
 }
 
 export function FavHeartEmpty(props) {
+    const [leagues, setLeagues] = useState([]);
+    const decodedToken = jwtDecode(sessionStorage.getItem("token"));
+    const id = decodedToken['id'];
+
+    const getLeagues = () => {
+        paresportifsApi.get(`users/${id}`)
+            .then((res) => {
+                const status = res.status;
+
+                if (status === 200) {
+                    const data = res.data['leaguesFav'];
+
+                    setLeagues(data);
+                } else {
+                    console.log(`HTTP status: ${status}`)
+                }
+            })
+    }
+
+    const patch = () => {
+        paresportifsApi.patch(`users/${id}`, {
+            "leaguesFav": `/api/leagues/${props.idLeague}`
+        }, {
+            headers: {
+                'content-type': 'application/merge-patch+json'
+            }
+        })
+            .then((res) => {
+                const status = res.status;
+
+                console.log(status)
+            })
+    }
+
+    const addLeague = () => {
+        paresportifsApi.post(`leagues`, {
+            "idLeague": props.idLeague,
+            "name": props.name,
+            "slug": props.slug,
+            "imageUrl": props.image_url,
+            "users": [`/api/users/${id}`]
+        })
+            .then((res) => {
+                const status = res.status;
+
+                if (status === 201) {
+                    console.log(res)
+                } else {
+                    console.log(`Status HTTP: ${status}`)
+                }
+            })
+    }
+
+    const addToFav = () => {
+        getLeagues();
+
+        console.log(props.image_url)
+
+        if (leagues.includes(props.idLeague)) {
+            patch();
+        } else {
+            addLeague();
+        }
+
+    }
+
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-heart" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-heart" viewBox="0 0 16 16" onClick={addToFav}>
             <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
         </svg>
     )

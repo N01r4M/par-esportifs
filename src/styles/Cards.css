@@ -52,6 +52,17 @@
   margin: 0;
   display: inline-block;
 }
+.card.bets {
+  width: 45%;
+  height: 500px;
+  text-align: center;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+.card.bets h4 {
+  margin: 0;
+  display: inline-block;
+}
 .card.match-info {
   display: flex;
   justify-content: space-between;
@@ -77,6 +88,36 @@
   margin: 5px 0 0 0;
 }
 .card.match-info .score p {
+  margin: 0;
+}
+.card .match-bet-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 3px 0;
+}
+.card .match-bet-info .team {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+.card .match-bet-info .team img {
+  width: 1.8rem;
+}
+.card .match-bet-info .team p {
+  margin: 5px 0 0 0;
+}
+.card .match-bet-info .score p {
+  margin: 0;
+}
+.card.back-bet-info:hover {
+  cursor: pointer;
+  background-color: #343A40;
+}
+.card .bet-info p {
   margin: 0;
 }
 .card.match-header {

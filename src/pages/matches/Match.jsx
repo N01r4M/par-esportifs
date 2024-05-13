@@ -172,7 +172,8 @@ export function Match(props) {
                                     "idMatch": match.id.toString(),
                                     "startAt": match.scheduled_at,
                                     "teamId": parseInt(values.team),
-                                    "nbCoins": betCoins
+                                    "nbCoins": betCoins,
+                                    'status': 'not_checked'
                                 })
                                 .then((res) => {
                                     const status = res.status;

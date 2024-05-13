@@ -65,6 +65,19 @@ $background: #343A40;
     }
   }
 
+  &.bets {
+       width: 45%;
+       height: 500px;
+       text-align: center;
+       overflow: auto;
+       margin-bottom: 10px;
+
+       & h4 {
+         margin: 0;
+         display: inline-block;
+       }
+     }
+
   &.match-info {
     display: flex;
     justify-content: space-between;
@@ -97,6 +110,49 @@ $background: #343A40;
       & p {
         margin: 0;
       }
+    }
+  }
+
+  & .match-bet-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding: 3px 0;
+
+    & .team {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 30%;
+
+      & img {
+        width: 1.8rem;
+      }
+
+      & p {
+        margin: 5px 0 0 0;
+      }
+    }
+
+    & .score {
+      & p {
+        margin: 0;
+      }
+    }
+  }
+
+  &.back-bet-info {
+    &:hover {
+      cursor: pointer;
+      background-color: $background;
+    }
+  }
+
+  & .bet-info {
+    p {
+      margin: 0;
     }
   }
 

@@ -14,6 +14,7 @@ import {Serie} from "./pages/leagues/Serie";
 import {Match} from "./pages/matches/Match";
 import {Team} from "./pages/teams/Team";
 import {Player} from "./pages/players/Player";
+import {BetsRecord} from "./pages/matches/BetsRecord";
 
 function App() {
     const token = sessionStorage.getItem('token');
@@ -37,12 +38,11 @@ function App() {
                 <Route path="/favorites/:page" element={<List email={email} login={login} coins={coins} />} />
                 <Route path="/:idLeague" element={<League email={email} login={login} coins={coins} />} />
                 <Route path="/:idLeague/:idSerie" element={<Serie email={email} login={login} coins={coins} />} />
-
                 <Route path="/:idLeague/:idSerie/:idMatch" element={<Match email={email} login={login} coins={coins} />} />
-
                 <Route path="/:idLeague/:idSerie/:idMatch/:idTeam" element={<Team email={email} login={login} coins={coins} />} />
-
                 <Route path="/:idLeague/:idSerie/:idMatch/:idTeam/:idPlayer" element={<Player email={email} login={login} coins={coins} />} />
+
+                <Route path="/bets" element={<BetsRecord email={email} login={login} coins={coins} />} />
 
                 <Route path="/profile" element={<Profile email={email} login={login} coins={coins} />} />
                 <Route path="/login" element={<Login email={email} login={login} coins={coins} />} />
