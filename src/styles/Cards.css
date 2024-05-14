@@ -149,8 +149,11 @@
 .card.team h4 {
   margin: 0;
 }
-.card.team p {
+.card.team div {
   margin: 8px 0;
+}
+.card.team div:hover {
+  cursor: pointer;
 }
 .card.player {
   width: fit-content;

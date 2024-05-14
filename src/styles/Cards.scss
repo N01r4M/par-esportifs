@@ -190,8 +190,12 @@ $background: #343A40;
       margin: 0;
     }
 
-    p {
+    div {
       margin: 8px 0;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 

@@ -129,11 +129,11 @@ export function Match(props) {
 
                 <div className="container-match">
                     <AppCardInfo className="card team one" >
-                        <div className="bg-logo" style={{ backgroundImage: `url(${team1.image_url})` }}></div>
+                        {/*<div className="bg-logo" style={{ backgroundImage: `url(${team1.image_url})` }}></div>*/}
 
                         {
                             team1.players.sort((a, b) => a.role.localeCompare(b.role)).map((player) => {
-                                return <AppText text={`${player.role} - ${player.name}`} />
+                                return <div onClick={() => navigate(`/${match.league.id}/${match.serie.id}/${match.id}/${team1.id}/${player.id}`)}>{player.role} - {player.name}</div>
                             })
                         }
                     </AppCardInfo>
@@ -147,11 +147,11 @@ export function Match(props) {
                     </iframe>
 
                     <AppCardInfo className="card team two" onCLick={() => navigate(`/teams/${team2.id}`)}>
-                        <div className="bg-logo" style={{ backgroundImage: `url(${team2.image_url})` }}></div>
+                        {/*<div className="bg-logo" style={{ backgroundImage: `url(${team2.image_url})` }}></div>*/}
 
                         {
                             team2.players.sort((a, b) => a.role.localeCompare(b.role)).map((player) => {
-                                return <AppText text={`${player.name} - ${player.role}`} />
+                                return <div onClick={() => navigate(`/${match.league.id}/${match.serie.id}/${match.id}/${team2.id}/${player.id}`)}>{player.role} - {player.name}</div>
                             })
                         }
                     </AppCardInfo>

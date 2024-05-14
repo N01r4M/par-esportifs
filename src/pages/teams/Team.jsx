@@ -17,6 +17,9 @@ export function Team() {
     const idMatch = useParams().idMatch;
     const navigate = useNavigate();
 
+    /**
+     * Récupère les données sur l'équipe
+     */
     const getTeam = () => {
         pandaScoreApi.get(`teams/${idTeam}`)
             .then((res) => {
@@ -34,6 +37,9 @@ export function Team() {
             })
     }
 
+    /**
+     * Récupère les données sur le match pour le fil d'ariane
+     */
     const getMatch = () => {
         pandaScoreApi.get(`matches/${idMatch}`)
             .then((res) => {
@@ -47,6 +53,9 @@ export function Team() {
             })
     }
 
+    /**
+     * Récupère les matchs terminés de l'équipe
+     */
     const getPastMatches = () => {
         pandaScoreApi.get(`teams/${idTeam}/matches?filter[status]=finished&sort=-begin_at&per_page=10`)
             .then(res => {
@@ -60,6 +69,9 @@ export function Team() {
             })
     }
 
+    /**
+     * Récupère les matchs en cours de l'équipe
+     */
     const getRunningMatches = () => {
         pandaScoreApi.get(`teams/${idTeam}/matches?filter[status]=running&sort=-begin_at&per_page=10`)
             .then(res => {
@@ -73,6 +85,9 @@ export function Team() {
             })
     }
 
+    /**
+     * Récupère les matchs à venir de l'équipe
+     */
     const getUpcomingMatches = () => {
         pandaScoreApi.get(`teams/${idTeam}/matches?filter[status]=not_started&sort=-begin_at&per_page=10`)
             .then(res => {
