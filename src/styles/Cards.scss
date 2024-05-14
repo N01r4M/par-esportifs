@@ -212,4 +212,19 @@ $background: #343A40;
       }
     }
   }
+
+  &.rank {
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
+    margin-top: 15px;
+
+    & p {
+      margin: 0;
+    }
+
+    & div {
+      display: flex;
+    }
+  }
 }

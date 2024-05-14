@@ -15,6 +15,7 @@ import {Match} from "./pages/matches/Match";
 import {Team} from "./pages/teams/Team";
 import {Player} from "./pages/players/Player";
 import {BetsRecord} from "./pages/matches/BetsRecord";
+import {Ranking} from "./pages/users/Ranking";
 
 function App() {
     const token = sessionStorage.getItem('token');
@@ -43,7 +44,9 @@ function App() {
                 <Route path="/:idLeague/:idSerie/:idMatch/:idTeam/:idPlayer" element={<Player email={email} login={login} coins={coins} />} />
 
                 <Route path="/bets" element={<BetsRecord email={email} login={login} coins={coins} />} />
+                <Route path="/home" element={<BetsRecord email={email} login={login} coins={coins} />} />
 
+                <Route path="/ranking" element={<Ranking email={email} login={login} coins={coins} />} />
                 <Route path="/profile" element={<Profile email={email} login={login} coins={coins} />} />
                 <Route path="/login" element={<Login email={email} login={login} coins={coins} />} />
                 <Route path="/logout" element={<Logout />} />

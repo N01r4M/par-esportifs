@@ -17,7 +17,7 @@ const SignupSchema = Yup.object().shape({
 
 export function Signup(props) {
     if (props.login) {
-        return <Navigate to={"/"} state={{ coins: props.coins, email: props.email }} replace={true} />
+        return <Navigate to={"/bets"} state={{ coins: props.coins, email: props.email }} replace={true} />
     }
 
     return (

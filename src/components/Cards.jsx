@@ -186,3 +186,12 @@ export function AppCardBetInfo(props) {
     )
 }
 
+export function AppCardRank(props) {
+    return (
+        <div className="card rank">
+            <AppText text={props.rank}/>
+            <AppText text={props.user.username}/>
+            <AppText text={`${props.user.coins} coins`}/>
+        </div>
+    )
+}
