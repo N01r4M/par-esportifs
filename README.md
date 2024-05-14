@@ -1,3 +1,17 @@
+# Installation 
+Pour mettre en place le front, voici les étapes à respecter : 
+-	Se rendre sur le dépôt github : https://github.com/N01r4M/par-esportifs 
+-	Ouvrir son cmd et noter la commande suivante : git clone https://github.com/N01r4M/par-esportifs.git
+-	Ouvrir un terminal de commandes à la racine du projet et noter les commandes suivantes : 
+`npm install`
+`npm start`
+-	Rendez-vous ensuite sur le lien suivant : http://localhost:3000/signin 
+-	Créez un compte, il ne vous reste plus qu’à naviguer sur le site ! 
+
+
+---
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
