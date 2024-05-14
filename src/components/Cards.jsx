@@ -40,7 +40,6 @@ export function AppCardSerie(props) {
         <div className="card leagues" onClick={() => navigate(`/${props.league}/${props.id}`)}>
             <div className="title-container">
                 <h5 className="title">{props.name}</h5>
-                <FavHeartEmpty />
             </div>
             <img alt="Logo ligue" src={props.image_url} />
         </div>

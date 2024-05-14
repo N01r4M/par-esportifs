@@ -115,8 +115,7 @@ export function List(props) {
                     {
                         leagues.map((league) => (
                             pathname.startsWith('/leagues/') ?
-                                <AppCardLeague id={league.id} name={league.name} image_url={league.image_url}
-                                               slug={league.slug}/>
+                                <AppCardLeague id={league.id} name={league.name} image_url={league.image_url} slug={league.slug}/>
                                 // <AppCardLeague id={league.id} name={league.name} image_url={league.image_url} slug={league.slug} isFav={fav.includes(league.id)} />
                             :
                                 <AppCardLeague id={league.id} name={league.name} image_url={league.image_url} slug={league.slug} isFav={true} />
