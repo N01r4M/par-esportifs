@@ -21,7 +21,7 @@ export function AppNavbar(props) {
 
             <div className="links">
                 <AppLink text="Ligues" link={"/leagues/1"} class={`link ${location.pathname.startsWith("/leagues") ? "active" : ""}`} />
-                <AppLink text="Favoris" link={"/favorites/1"} class={`link ${location.pathname === "/favorites" ? "active" : ""}`} />
+                <AppLink text="Favoris" link={"/favorites/1"} class={`link ${location.pathname.startsWith("/favorites") ? "active" : ""}`} />
                 <AppLink text="Paris" link={"/bets"} class={`link ${location.pathname === "/bets" || location.pathname === "/" ? "active" : ""}`} />
                 <AppLink text="Classement" link={"/ranking"} class={`link ${location.pathname === "/ranking" ? "active" : ""}`} />
                 <AppLink text="Profil" link={"/profile"} class={`link ${location.pathname === "/profile" ? "active" : ""}`} />
