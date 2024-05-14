@@ -112,7 +112,7 @@ export function Team() {
             <div>
                 <AppBreadcrumb links={[{ text: "Accueil", link: "/home"}, { text: "Ligues", link: "/leagues/1" }, { text: `${match.league.name}`, link: `/${match.league.id}` }, { text: `${match.serie.full_name}`, link: `/${match.league.id}/${match.serie.id}` }, { text: `${match.name}`, link: `/${match.league.id}/${match.serie.id}/${match.id}` }, { text: `${team.name}`, link: `/${match.league.id}/${match.serie.id}/${match.id}/${idTeam}` }]} />
 
-                <div className="container">
+                <div className="team-container">
                     <div className="infos-container">
                         <AppCardInfo className="card infos">
                             <AppText text={`Abréviation : ${team.acronym}`} />

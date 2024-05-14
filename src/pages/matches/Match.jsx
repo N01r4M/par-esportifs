@@ -151,7 +151,7 @@ export function Match(props) {
 
                         {
                             team2.players.sort((a, b) => a.role.localeCompare(b.role)).map((player) => {
-                                return <div onClick={() => navigate(`/${match.league.id}/${match.serie.id}/${match.id}/${team2.id}/${player.id}`)}>{player.role} - {player.name}</div>
+                                return <div onClick={() => navigate(`/${match.league.id}/${match.serie.id}/${match.id}/${team2.id}/${player.id}`)}>{player.name} - {player.role}</div>
                             })
                         }
                     </AppCardInfo>

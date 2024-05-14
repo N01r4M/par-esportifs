@@ -1,4 +1,3 @@
-import {AppNavbarLogo} from "../../components/Navbar";
 import "../../styles/Login.css";
 import {AppLink, AppText, AppTitle} from "../../components/Texts";
 import {AppCard} from "../../components/Cards";
@@ -13,8 +12,6 @@ const FgtPwdSchema = Yup.object().shape({
 export function ForgottenPwd() {
     return (
         <>
-            <AppNavbarLogo />
-
             <div className="login-container">
                 <AppTitle title="Mot de passe oublié" style={{marginBottom: 0}} />
                 <AppText text="Il est temps de modifier votre mot de passe !" style={{marginBottom: "50px"}} />
